@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-
+var env = require('dotenv').config();
 
 // app.METHOD(PATH, HANDLER)
 
@@ -11,19 +11,17 @@ app.get('/', function(req, res) {
   });
 */
 
+app.get( '/', (req, res) => {
+    res.send(env.parsed.MESSAGE_STYLE);
+})
+
+
 app.get("/json", (req, res) => {
     if(process.env.MESSAGE_STYLE === "uppercase"){
         res.json({"message" : "HELLO JSON"});
       }
       res.json({"message" : "Hello json"});
   });
-
-
-app.get( '/', function(req, res) {
-    res.sendFile(__dirname + '/views/index.html');
-  })
-
-app.use('/public', express.static(__dirname + '/public'));
 
 
 
