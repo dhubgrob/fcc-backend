@@ -1,13 +1,10 @@
 var express = require('express');
 var app = express();
 
-
-
-console.log("hello world");
-
-
-
-
+// app.METHOD(PATH, HANDLER)
+app.get('/', function(req, res) {
+    res.send('Response String');
+  });
 
 
 
