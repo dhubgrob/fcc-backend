@@ -11,19 +11,24 @@ app.get('/', function(req, res) {
   });
 */
 
-app.get( '/', (req, res) => {
-    res.send(env.parsed.MESSAGE_STYLE);
-})
-
-
 app.get("/json", (req, res) => {
-    if(process.env.MESSAGE_STYLE === "uppercase"){
+    if(env.parsed.MESSAGE_STYLE === "uppercase"){
         res.json({"message" : "HELLO JSON"});
       }
       res.json({"message" : "Hello json"});
   });
 
-
+  app.get(
+    '/now',
+    (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+  },
+   (req, res) => {
+    res.send({
+      time : req.time
+      })
+  })
 
 
 
