@@ -37,9 +37,9 @@ app.get(
   })
 
 app.get("/:word/echo", (req, res) => {
-    const word = req.params;
-    res.send({
-      'echo': word
+    const word = req.params.word;
+    res.json({
+       "word" : word
     });
   });
   
