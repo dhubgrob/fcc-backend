@@ -11,6 +11,11 @@ app.get('/', function(req, res) {
   });
 */
 
+app.use(function (req, res, next){
+    console.log(req.method + ' '  + req.path + ' - ' + req.ip);
+    next();
+  })
+
 app.get("/json", (req, res) => {
     if(env.parsed.MESSAGE_STYLE === "uppercase"){
         res.json({"message" : "HELLO JSON"});
@@ -18,7 +23,7 @@ app.get("/json", (req, res) => {
       res.json({"message" : "Hello json"});
   });
 
-  app.get(
+app.get(
     '/now',
     (req, res, next) => {
     req.time = new Date().toString();
@@ -31,12 +36,13 @@ app.get("/json", (req, res) => {
 
   })
 
-  app.use(function (req, res, next){
-    console.log(req.method + ' '  + req.path + ' - ' + req.ip);
-    next();
-  })
-
-
+app.get("/:word/echo", (req, res) => {
+    const word = req.params;
+    res.send({
+      'echo': word
+    });
+  });
+  
 
 
 
