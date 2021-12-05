@@ -28,6 +28,12 @@ app.get("/json", (req, res) => {
     res.send({
       time : req.time
       })
+
+  })
+
+  app.use(function (req, res, next){
+    console.log(req.method + ' '  + req.path + ' - ' + req.ip);
+    next();
   })
 
 
