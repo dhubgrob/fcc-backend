@@ -62,7 +62,6 @@ app.get("/:word/echo", (req, res) => {
   app.post("/name", function(req, res) {
     // Handle the data in the request
     let string = req.body.first + " " + req.body.last;
-    console.log(string);
     res.json({ "name" : string });
   });
 
